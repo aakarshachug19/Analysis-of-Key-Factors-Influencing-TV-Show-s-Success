@@ -5,15 +5,6 @@
 The project collects real-time data from three data sources: Twitter, Reddit, and TMDB. It uses Twitter's sample streaming API to collect one percent sample stream data. For Reddit, it collects domain data from various TV show-related subreddit threads. Finally, for TMDB, four imperative APIs are used to obtain TV show-related data, which updates the database in real time. The Reddit and TMDB APIs are scheduled to run once per day, while the Twitter API will run continuously and store data to MongoDB.
 
 
-
-## Team - The Data Bloggers
-
-* Aakarsha LNU, alnu2@binghamton.edu
-* Riya Yeshwant Thakur, rthakur1@binghamton.edu
-* Ishan Bagchi, ibagchi1@binghamton.edu
-* Aayushi Ahlawat, aahlawa1@binghamton.edu
-* Tarun Tiwari, ttiwari1@binghamton.edu 
-
 ## Tech-stack
 
 * `python` - The project is developed and tested using python. 
@@ -244,5 +235,44 @@ The project collects real-time data from three data sources: Twitter, Reddit, an
 
 ```
 </details>
+
+## Predictive & Text Analysis
+* For this project, we have thought about and have answered two research questions/areas based on our datasets and the type of data
+we have gathered. Our research objectives shall revolve around the factors influencing the popularity of TV shows based on data
+collected from TMDB, Twitter and Reddit. 
+* Further, we have answered the following research questions:
+Ques. How are elements like the genre, cast, number of seasons, number of episodes, production firms, networks, and length of the episodes affecting the success of TV shows?
+
+Ques. To what extent are popular TV series on TMDB hyped on Twitter, and if this hype is positive or negative?
+* On the basis of tweet frequency top 20 TV Shows were retrieved to calculate the polarity of each of the show. After
+calculating the polarity score hype was marked as positive, negative or neutral hype. On the basis of analysis made
+positive and negative hypes were in the range of 0-2000 with highest positive hype at 6000 and negative hype at
+2000 respectively.
+
+## Methodology for Data Analysis
+* `Twitter`
+  *  For twitter dataset, tweets related to TV shows were fetched from the data stored in MongoDB followed by storing it in
+pickle file.
+  *  Descriptive Analysis was performed on the retrieved data to identify various patterns followed in the dataset and a
+time series graph was plotted between the tweet count and TV Shows tweet frequency count for a particular duration.
+  *  Pre-processing of tweets was done using a pre-processor library in python which includes cleaning, tokenizing, and
+parsing of URLs, Hashtags, Mentions, Reserved words (RT,FAV), Emojis and Smileys.
+  *  Further, top 100 TV shows were fetched to determine their hype on twitter and number of tweets for a mentioned TV
+show was counted followed by its frequency.
+  *  For each of the selected TV show polarity score (positive, negative, or neutral) was calculated based on the tweets
+and hype was determined based on the polarity score.
+  *  And lastly the result was visualized graphically.
+
+ 
+* `TMDB` 
+  *  For TMDB, firstly a connection is established with MongoDB to retrieve and start with the pre-processing of the available data.
+  *  In the formed dataframe, the dependent and independent variables were as follows:
+  * Independent Variable: id,name,first_air_date,genre,cast_details,episode_run_time,number_of_episodes,number_of_seasons,overview,production_companies,status,type
+  * Dependent Variable: popularity
+  *  After formation of dataframe, pre-processing is done. 
+  *  For Data Preprocessing, firstly Data Cleaning was done in which null, missing and duplicates values were eliminated and One Hot Encoding Technique was used for the categorical data to improve the data accuracy. 
+  *  After the pre-processing, model training and testing was done for the data frame which contains 58 columns.
+  *  Data frame was divided into training and testing sets and supervised learning modelling was used in which a training set is used to instruct models to produce the desired results. This training dataset has both the right inputs and outputs, enabling the model to develop over time. Further, the technique that was used for modelling under supervisedlearning is “Linear Regression” which is used to find target value based on independent factors.
+  * After which graphs are plotted to predict the popularity based on other independent factors.
 
 
